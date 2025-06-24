@@ -264,17 +264,17 @@
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(20px);
       border-radius: 20px;
-      padding: 40px;
+      padding: 30px;
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      min-height: 200px;
+      min-height: 150px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .preview-text {
-      font-size: 4rem;
+      font-size: 3rem;
       font-weight: bold;
       line-height: 1.2;
       word-break: break-word;
@@ -472,7 +472,7 @@
     <div class="main-content">
       <!-- Preview Section -->
       <div class="preview-section">
-        <div class="preview-text" id="previewText">BACKLIT SIGN</div>
+        <div class="preview-text" id="previewText">9702</div>
       </div>
 
       <!-- Fonts Section -->
@@ -494,11 +494,11 @@
     const lightConfig = {
       'white': {
         color: 'rgba(255, 255, 255, 0.9)',
-        shadow: '0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 45px rgba(255, 255, 255, 0.2)'
+        shadow: '0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 80px rgba(255, 255, 255, 0.2)'
       },
       'warm-white': {
         color: 'rgba(255, 230, 179, 0.9)',
-        shadow: '0 0 15px rgba(255, 230, 179, 0.6), 0 0 30px rgba(255, 230, 179, 0.4), 0 0 45px rgba(255, 230, 179, 0.2)'
+        shadow: '0 0 20px rgba(255, 230, 179, 0.8), 0 0 40px rgba(255, 230, 179, 0.6), 0 0 60px rgba(255, 230, 179, 0.4), 0 0 80px rgba(255, 230, 179, 0.2)'
       }
     };
 
@@ -513,14 +513,14 @@
         filter: 'brightness(1.1)'
       },
       'brushed-gold': {
-        background: 'linear-gradient(45deg, #8B7355 0%, #B8860B 20%, #DAA520 40%, #FFD700 50%, #FFDC00 60%, #DAA520 80%, #8B7355 100%)',
+        background: 'repeating-linear-gradient(90deg, #8B7355 0px, #B8860B 2px, #DAA520 4px, #FFD700 6px, #FFDC00 8px, #DAA520 10px, #B8860B 12px, #8B7355 14px)',
         filter: 'brightness(1.2) contrast(1.1)',
-        backgroundSize: '200% 200%'
+        backgroundSize: '14px 100%'
       },
       'brushed-silver': {
-        background: 'linear-gradient(45deg, #8C8C8C 0%, #C0C0C0 30%, #E5E5E5 50%, #F8F8F8 70%, #C0C0C0 100%)',
+        background: 'repeating-linear-gradient(90deg, #8C8C8C 0px, #A8A8A8 2px, #C0C0C0 4px, #E5E5E5 6px, #F8F8F8 8px, #E5E5E5 10px, #C0C0C0 12px, #A8A8A8 14px)',
         filter: 'brightness(1.2) contrast(1.1)',
-        backgroundSize: '200% 200%'
+        backgroundSize: '14px 100%'
       },
       'mirror-gold': {
         background: 'radial-gradient(circle, #FFD700, #DAA520, #B8860B)',
@@ -571,19 +571,21 @@
       element.style.webkitTextFillColor = 'transparent';
       
       // Apply material filter and light shadow
-      element.style.filter = `${material.filter || ''} drop-shadow(${light.shadow})`;
+      const materialFilter = material.filter || '';
+      const lightShadow = light.shadow;
+      element.style.filter = `${materialFilter} drop-shadow(${lightShadow})`;
       
       if (material.backgroundSize) {
         element.style.backgroundSize = material.backgroundSize;
       }
       
-      // Remove animations
-      element.style.animation = '';
+      // Ensure text stroke for better visibility
+      element.style.webkitTextStroke = '1px rgba(255, 255, 255, 0.1)';
     }
 
     // Update preview
     function updatePreview() {
-      const text = textInput.value || 'BACKLIT SIGN';
+      const text = textInput.value || '9702';
       previewText.textContent = text;
       applyEffects(previewText);
       
@@ -599,7 +601,7 @@
 
     // Render fonts
     function renderFonts() {
-      const text = textInput.value || 'BACKLIT SIGN';
+      const text = textInput.value || '9702';
       fontGrid.innerHTML = '';
       
       fonts.forEach((font, index) => {
