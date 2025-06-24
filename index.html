@@ -426,6 +426,8 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Specific font spacing adjustments are handled in JavaScript */
   </style>
 </head>
 <body>
@@ -449,8 +451,8 @@
       <div class="control-section">
         <h3>Lighting Style</h3>
         <div class="light-options">
-          <button class="light-btn active" data-light="white">White</button>
-          <button class="light-btn" data-light="warm-white">Warm White</button>
+          <button class="light-btn active" data-light="white">#1 White</button>
+          <button class="light-btn" data-light="warm-white">#2 Warm White</button>
         </div>
       </div>
 
@@ -493,34 +495,34 @@
     // Light color configurations
     const lightConfig = {
       'white': {
-        color: 'rgba(255, 255, 255, 0.9)',
-        shadow: '0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 80px rgba(255, 255, 255, 0.2)'
+        color: '#FEFEFE',
+        shadow: '0 0 15px #FEFEFE, 0 0 30px #FEFEFE, 0 0 45px #FEFEFE, 0 0 60px rgba(254, 254, 254, 0.7)'
       },
       'warm-white': {
-        color: 'rgba(255, 230, 179, 0.9)',
-        shadow: '0 0 20px rgba(255, 230, 179, 0.8), 0 0 40px rgba(255, 230, 179, 0.6), 0 0 60px rgba(255, 230, 179, 0.4), 0 0 80px rgba(255, 230, 179, 0.2)'
+        color: '#FFE9BC',
+        shadow: '0 0 15px #FFE9BC, 0 0 30px #FFE9BC, 0 0 45px #FFE9BC, 0 0 60px rgba(255, 233, 188, 0.7)'
       }
     };
 
     // Material configurations
     const materialConfig = {
       'black': {
-        background: 'linear-gradient(135deg, #1a1a1a, #000000, #0d0d0d)',
-        filter: 'brightness(0.9)'
+        background: '#000000',
+        filter: 'brightness(1.0)'
       },
       'white': {
         background: 'linear-gradient(135deg, #ffffff, #f8f8f8, #f0f0f0)',
         filter: 'brightness(1.1)'
       },
       'brushed-gold': {
-        background: 'repeating-linear-gradient(90deg, #8B7355 0px, #B8860B 2px, #DAA520 4px, #FFD700 6px, #FFDC00 8px, #DAA520 10px, #B8860B 12px, #8B7355 14px)',
+        background: 'repeating-linear-gradient(0deg, #8B7355 0px, #B8860B 2px, #DAA520 4px, #FFD700 6px, #FFDC00 8px, #DAA520 10px, #B8860B 12px, #8B7355 14px)',
         filter: 'brightness(1.2) contrast(1.1)',
-        backgroundSize: '14px 100%'
+        backgroundSize: '100% 14px'
       },
       'brushed-silver': {
-        background: 'repeating-linear-gradient(90deg, #8C8C8C 0px, #A8A8A8 2px, #C0C0C0 4px, #E5E5E5 6px, #F8F8F8 8px, #E5E5E5 10px, #C0C0C0 12px, #A8A8A8 14px)',
+        background: 'repeating-linear-gradient(0deg, #8C8C8C 0px, #A8A8A8 2px, #C0C0C0 4px, #E5E5E5 6px, #F8F8F8 8px, #E5E5E5 10px, #C0C0C0 12px, #A8A8A8 14px)',
         filter: 'brightness(1.2) contrast(1.1)',
-        backgroundSize: '14px 100%'
+        backgroundSize: '100% 14px'
       },
       'mirror-gold': {
         background: 'radial-gradient(circle, #FFD700, #DAA520, #B8860B)',
@@ -578,9 +580,6 @@
       if (material.backgroundSize) {
         element.style.backgroundSize = material.backgroundSize;
       }
-      
-      // Ensure text stroke for better visibility
-      element.style.webkitTextStroke = '1px rgba(255, 255, 255, 0.1)';
     }
 
     // Update preview
@@ -616,13 +615,21 @@
         const fontDisplay = fontItem.querySelector('.font-display');
         applyEffects(fontDisplay);
         
-        // Apply current orientation
+        // Apply current orientation and specific spacing adjustments
         if (currentView === 'vertical') {
           fontDisplay.style.writingMode = 'vertical-rl';
           fontDisplay.style.textOrientation = 'upright';
+          // Adjust spacing for specific fonts in vertical mode
+          if (index === 0) fontDisplay.style.letterSpacing = '-0.1em'; // #1
+          if (index === 7) fontDisplay.style.letterSpacing = '-0.05em'; // #8
         } else {
           fontDisplay.style.writingMode = 'horizontal-tb';
           fontDisplay.style.textOrientation = 'mixed';
+          // Adjust spacing for specific fonts in horizontal mode  
+          if (index === 0) fontDisplay.style.letterSpacing = '0.3em'; // #1
+          if (index === 4) fontDisplay.style.letterSpacing = '0.25em'; // #5
+          if (index === 2) fontDisplay.style.letterSpacing = '0.2em'; // #3
+          if (index === 8) fontDisplay.style.letterSpacing = '0.15em'; // #9
         }
         
         fontGrid.appendChild(fontItem);
@@ -671,13 +678,23 @@
         
         // Apply orientation styles
         const fontDisplays = document.querySelectorAll('.font-display');
-        fontDisplays.forEach(display => {
+        fontDisplays.forEach((display, index) => {
           if (currentView === 'vertical') {
             display.style.writingMode = 'vertical-rl';
             display.style.textOrientation = 'upright';
+            // Reset horizontal spacing and apply vertical spacing
+            display.style.letterSpacing = '';
+            if (index === 0) display.style.letterSpacing = '-0.1em'; // #1
+            if (index === 7) display.style.letterSpacing = '-0.05em'; // #8
           } else {
             display.style.writingMode = 'horizontal-tb';
             display.style.textOrientation = 'mixed';
+            // Reset vertical spacing and apply horizontal spacing
+            display.style.letterSpacing = '';
+            if (index === 0) display.style.letterSpacing = '0.3em'; // #1
+            if (index === 4) display.style.letterSpacing = '0.25em'; // #5
+            if (index === 2) display.style.letterSpacing = '0.2em'; // #3
+            if (index === 8) display.style.letterSpacing = '0.15em'; // #9
           }
         });
         
