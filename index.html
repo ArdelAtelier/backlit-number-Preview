@@ -316,10 +316,6 @@
       padding: 20px 0;
     }
 
-    .font-grid.list-view {
-      grid-template-columns: 1fr;
-    }
-
     .font-item {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 15px;
@@ -462,12 +458,12 @@
       <div class="control-section">
         <h3>Face Material</h3>
         <div class="material-options">
-          <button class="material-btn active" data-material="black" style="background: radial-gradient(circle, #1a1a1a, #000000);">Black</button>
-          <button class="material-btn" data-material="white" style="background: radial-gradient(circle, #ffffff, #f0f0f0); color: #333;">White</button>
-          <button class="material-btn" data-material="brushed-gold" style="background: linear-gradient(45deg, #DAA520, #FFD700, #B8860B);">Brushed Gold</button>
-          <button class="material-btn" data-material="brushed-silver" style="background: linear-gradient(45deg, #C0C0C0, #E5E5E5, #A8A8A8);">Brushed Silver</button>
-          <button class="material-btn" data-material="mirror-gold" style="background: radial-gradient(circle, #FFD700, #DAA520);">Mirror Gold</button>
-          <button class="material-btn" data-material="mirror-silver" style="background: radial-gradient(circle, #FFFFFF, #C0C0C0);">Mirror Silver</button>
+          <button class="material-btn active" data-material="black" style="background: radial-gradient(circle, #1a1a1a, #000000);">#1 Black</button>
+          <button class="material-btn" data-material="white" style="background: radial-gradient(circle, #ffffff, #f0f0f0); color: #333;">#2 White</button>
+          <button class="material-btn" data-material="brushed-gold" style="background: linear-gradient(45deg, #DAA520, #FFD700, #B8860B);">#3 Brushed Gold</button>
+          <button class="material-btn" data-material="brushed-silver" style="background: linear-gradient(45deg, #C0C0C0, #E5E5E5, #A8A8A8);">#4 Brushed Silver</button>
+          <button class="material-btn" data-material="mirror-gold" style="background: radial-gradient(circle, #FFD700, #DAA520);">#5 Mirror Gold</button>
+          <button class="material-btn" data-material="mirror-silver" style="background: radial-gradient(circle, #FFFFFF, #C0C0C0);">#6 Mirror Silver</button>
         </div>
       </div>
     </div>
@@ -482,8 +478,8 @@
       <!-- Fonts Section -->
       <div class="fonts-section">
         <div class="view-controls">
-          <button class="view-btn active" data-view="grid">Grid View</button>
-          <button class="view-btn" data-view="list">List View</button>
+          <button class="view-btn active" data-view="horizontal">Horizontal</button>
+          <button class="view-btn" data-view="vertical">Vertical</button>
         </div>
         
         <div class="font-grid" id="fontGrid">
@@ -519,24 +515,20 @@
       'brushed-gold': {
         background: 'linear-gradient(45deg, #8B7355 0%, #B8860B 20%, #DAA520 40%, #FFD700 50%, #FFDC00 60%, #DAA520 80%, #8B7355 100%)',
         filter: 'brightness(1.2) contrast(1.1)',
-        backgroundSize: '200% 200%',
-        animation: 'brushedGoldShine 3s ease-in-out infinite'
+        backgroundSize: '200% 200%'
       },
       'brushed-silver': {
         background: 'linear-gradient(45deg, #8C8C8C 0%, #C0C0C0 30%, #E5E5E5 50%, #F8F8F8 70%, #C0C0C0 100%)',
         filter: 'brightness(1.2) contrast(1.1)',
-        backgroundSize: '200% 200%',
-        animation: 'brushedSilverShine 3s ease-in-out infinite'
+        backgroundSize: '200% 200%'
       },
       'mirror-gold': {
         background: 'radial-gradient(circle, #FFD700, #DAA520, #B8860B)',
-        filter: 'brightness(1.4) contrast(1.3)',
-        animation: 'mirrorGoldReflection 2s ease-in-out infinite'
+        filter: 'brightness(1.4) contrast(1.3)'
       },
       'mirror-silver': {
         background: 'radial-gradient(circle, #FFFFFF, #E5E5E5, #C0C0C0)',
-        filter: 'brightness(1.5) contrast(1.4)',
-        animation: 'mirrorSilverReflection 2s ease-in-out infinite'
+        filter: 'brightness(1.5) contrast(1.4)'
       }
     };
 
@@ -557,7 +549,7 @@
     // Global state
     let currentLight = 'white';
     let currentMaterial = 'black';
-    let currentView = 'grid';
+    let currentView = 'horizontal';
 
     // DOM elements
     const textInput = document.getElementById('textInput');
@@ -578,20 +570,15 @@
       element.style.backgroundClip = 'text';
       element.style.webkitTextFillColor = 'transparent';
       
-      // Apply material filter and animation
-      if (material.filter) {
-        element.style.filter = `${material.filter} drop-shadow(${light.shadow})`;
-      } else {
-        element.style.filter = `drop-shadow(${light.shadow})`;
-      }
+      // Apply material filter and light shadow
+      element.style.filter = `${material.filter || ''} drop-shadow(${light.shadow})`;
       
       if (material.backgroundSize) {
         element.style.backgroundSize = material.backgroundSize;
       }
       
-      if (material.animation) {
-        element.style.animation = material.animation;
-      }
+      // Remove animations
+      element.style.animation = '';
     }
 
     // Update preview
@@ -599,6 +586,15 @@
       const text = textInput.value || 'BACKLIT SIGN';
       previewText.textContent = text;
       applyEffects(previewText);
+      
+      // Apply current orientation to preview
+      if (currentView === 'vertical') {
+        previewText.style.writingMode = 'vertical-rl';
+        previewText.style.textOrientation = 'upright';
+      } else {
+        previewText.style.writingMode = 'horizontal-tb';
+        previewText.style.textOrientation = 'mixed';
+      }
     }
 
     // Render fonts
@@ -613,11 +609,19 @@
         fontItem.innerHTML = `
           <div class="font-number">#${index + 1}</div>
           <div class="font-display" style="font-family: '${font}', sans-serif;">${text}</div>
-          <div class="font-name">${font}</div>
         `;
         
         const fontDisplay = fontItem.querySelector('.font-display');
         applyEffects(fontDisplay);
+        
+        // Apply current orientation
+        if (currentView === 'vertical') {
+          fontDisplay.style.writingMode = 'vertical-rl';
+          fontDisplay.style.textOrientation = 'upright';
+        } else {
+          fontDisplay.style.writingMode = 'horizontal-tb';
+          fontDisplay.style.textOrientation = 'mixed';
+        }
         
         fontGrid.appendChild(fontItem);
       });
@@ -662,7 +666,27 @@
         viewBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentView = btn.dataset.view;
-        fontGrid.className = currentView === 'list' ? 'font-grid list-view' : 'font-grid';
+        
+        // Apply orientation styles
+        const fontDisplays = document.querySelectorAll('.font-display');
+        fontDisplays.forEach(display => {
+          if (currentView === 'vertical') {
+            display.style.writingMode = 'vertical-rl';
+            display.style.textOrientation = 'upright';
+          } else {
+            display.style.writingMode = 'horizontal-tb';
+            display.style.textOrientation = 'mixed';
+          }
+        });
+        
+        // Apply to preview text as well
+        if (currentView === 'vertical') {
+          previewText.style.writingMode = 'vertical-rl';
+          previewText.style.textOrientation = 'upright';
+        } else {
+          previewText.style.writingMode = 'horizontal-tb';
+          previewText.style.textOrientation = 'mixed';
+        }
       });
     });
 
