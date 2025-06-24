@@ -496,18 +496,18 @@
     const lightConfig = {
       'white': {
         color: '#FEFEFE',
-        shadow: '0 0 15px #FEFEFE, 0 0 30px #FEFEFE, 0 0 45px #FEFEFE, 0 0 60px rgba(254, 254, 254, 0.7)'
+        shadow: '0 0 15px #FEFEFE, 0 0 30px #FEFEFE, 0 0 45px #FEFEFE'
       },
       'warm-white': {
         color: '#FFE9BC',
-        shadow: '0 0 15px #FFE9BC, 0 0 30px #FFE9BC, 0 0 45px #FFE9BC, 0 0 60px rgba(255, 233, 188, 0.7)'
+        shadow: '0 0 15px #FFE9BC, 0 0 30px #FFE9BC, 0 0 45px #FFE9BC'
       }
     };
 
     // Material configurations
     const materialConfig = {
       'black': {
-        background: '#000000',
+        background: '#1a1a1a',
         filter: 'brightness(1.0)'
       },
       'white': {
@@ -566,16 +566,22 @@
       const light = lightConfig[currentLight];
       const material = materialConfig[currentMaterial];
       
-      // Apply material background
+      // Reset styles first
+      element.style.background = 'none';
+      element.style.webkitBackgroundClip = 'initial';
+      element.style.backgroundClip = 'initial';
+      element.style.webkitTextFillColor = 'initial';
+      element.style.color = 'initial';
+      
+      // Apply material background and make text transparent to show background
       element.style.background = material.background;
       element.style.webkitBackgroundClip = 'text';
       element.style.backgroundClip = 'text';
       element.style.webkitTextFillColor = 'transparent';
       
-      // Apply material filter and light shadow
-      const materialFilter = material.filter || '';
-      const lightShadow = light.shadow;
-      element.style.filter = `${materialFilter} drop-shadow(${lightShadow})`;
+      // Apply light glow effect
+      element.style.textShadow = light.shadow;
+      element.style.filter = `${material.filter || ''} drop-shadow(0 0 20px ${light.color}) drop-shadow(0 0 40px ${light.color})`;
       
       if (material.backgroundSize) {
         element.style.backgroundSize = material.backgroundSize;
@@ -619,17 +625,19 @@
         if (currentView === 'vertical') {
           fontDisplay.style.writingMode = 'vertical-rl';
           fontDisplay.style.textOrientation = 'upright';
-          // Adjust spacing for specific fonts in vertical mode
-          if (index === 0) fontDisplay.style.letterSpacing = '-0.1em'; // #1
-          if (index === 7) fontDisplay.style.letterSpacing = '-0.05em'; // #8
+          fontDisplay.style.letterSpacing = ''; // Reset first
+          // Adjust spacing for specific fonts in vertical mode - make narrower
+          if (index === 0) fontDisplay.style.letterSpacing = '-0.2em'; // #1
+          if (index === 7) fontDisplay.style.letterSpacing = '-0.15em'; // #8
         } else {
           fontDisplay.style.writingMode = 'horizontal-tb';
           fontDisplay.style.textOrientation = 'mixed';
-          // Adjust spacing for specific fonts in horizontal mode  
-          if (index === 0) fontDisplay.style.letterSpacing = '0.3em'; // #1
-          if (index === 4) fontDisplay.style.letterSpacing = '0.25em'; // #5
-          if (index === 2) fontDisplay.style.letterSpacing = '0.2em'; // #3
-          if (index === 8) fontDisplay.style.letterSpacing = '0.15em'; // #9
+          fontDisplay.style.letterSpacing = ''; // Reset first
+          // Adjust spacing for specific fonts in horizontal mode - make wider
+          if (index === 0) fontDisplay.style.letterSpacing = '0.4em'; // #1
+          if (index === 2) fontDisplay.style.letterSpacing = '0.3em'; // #3
+          if (index === 4) fontDisplay.style.letterSpacing = '0.35em'; // #5
+          if (index === 8) fontDisplay.style.letterSpacing = '0.25em'; // #9
         }
         
         fontGrid.appendChild(fontItem);
@@ -682,19 +690,19 @@
           if (currentView === 'vertical') {
             display.style.writingMode = 'vertical-rl';
             display.style.textOrientation = 'upright';
-            // Reset horizontal spacing and apply vertical spacing
+            // Reset and apply vertical spacing - make narrower
             display.style.letterSpacing = '';
-            if (index === 0) display.style.letterSpacing = '-0.1em'; // #1
-            if (index === 7) display.style.letterSpacing = '-0.05em'; // #8
+            if (index === 0) display.style.letterSpacing = '-0.2em'; // #1
+            if (index === 7) display.style.letterSpacing = '-0.15em'; // #8
           } else {
             display.style.writingMode = 'horizontal-tb';
             display.style.textOrientation = 'mixed';
-            // Reset vertical spacing and apply horizontal spacing
+            // Reset and apply horizontal spacing - make wider
             display.style.letterSpacing = '';
-            if (index === 0) display.style.letterSpacing = '0.3em'; // #1
-            if (index === 4) display.style.letterSpacing = '0.25em'; // #5
-            if (index === 2) display.style.letterSpacing = '0.2em'; // #3
-            if (index === 8) display.style.letterSpacing = '0.15em'; // #9
+            if (index === 0) display.style.letterSpacing = '0.4em'; // #1
+            if (index === 2) display.style.letterSpacing = '0.3em'; // #3
+            if (index === 4) display.style.letterSpacing = '0.35em'; // #5
+            if (index === 8) display.style.letterSpacing = '0.25em'; // #9
           }
         });
         
