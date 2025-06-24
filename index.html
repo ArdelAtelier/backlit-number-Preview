@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ArdelAtelier - Backlit Sign Font Color Preview</title>
+  <title>ArdelAtelier - Backlit Sign font color preview page</title>
   
   <style>
-    /* Font preloading for better performance */
+    /* Font definitions with ArdelAtelier GitHub repository */
     @font-face {
       font-family: 'Amita';
       src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Amita-Regular.woff2') format('woff2');
@@ -15,7 +15,6 @@
     @font-face {
       font-family: 'Arial Bold';
       src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Arial-BoldMT.woff2') format('woff2');
-      font-weight: bold;
       font-display: swap;
     }
     @font-face {
@@ -34,21 +33,18 @@
       font-display: swap;
     }
     @font-face {
-      font-family: 'Century Schlbk Cyrillic';
+      font-family: 'Century Schlbk';
       src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/CenturySchlbkCyrillicBT-Bold.woff2') format('woff2');
-      font-weight: bold;
       font-display: swap;
     }
     @font-face {
       font-family: 'DIN Bold';
       src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/DINBoldDINBold.woff2') format('woff2');
-      font-weight: bold;
       font-display: swap;
     }
     @font-face {
       font-family: 'Dubai Bold';
       src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Dubai-Bold.woff2') format('woff2');
-      font-weight: bold;
       font-display: swap;
     }
     @font-face {
@@ -59,7 +55,6 @@
     @font-face {
       font-family: 'Lucida Handwriting';
       src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/LucidaHandwriting-Italic.woff2') format('woff2');
-      font-style: italic;
       font-display: swap;
     }
 
@@ -71,186 +66,258 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(-45deg, #0f0f23, #1a1a2e, #16213e, #0f3460);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
       color: white;
-      overflow-x: hidden;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* Animated background */
-    .background-grid {
+    /* Animated background grid */
+    body::before {
+      content: '';
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background: 
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
       background-size: 50px 50px;
-      animation: backgroundMove 20s linear infinite;
+      animation: gridMove 20s linear infinite;
       z-index: -1;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes backgroundMove {
+    @keyframes gridMove {
       0% { transform: translate(0, 0); }
       100% { transform: translate(50px, 50px); }
     }
 
-    /* Main layout */
-    .app-container {
+    .container {
       display: flex;
       min-height: 100vh;
     }
 
-    /* Sidebar */
+    /* Sidebar styles */
     .sidebar {
-      width: 350px;
-      background: rgba(255, 255, 255, 0.05);
+      width: 320px;
+      background: rgba(15, 15, 15, 0.95);
       backdrop-filter: blur(20px);
+      padding: 30px 25px;
       border-right: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 30px;
       display: flex;
       flex-direction: column;
       gap: 30px;
-      position: relative;
-      overflow-y: auto;
     }
 
-    .sidebar::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
-      z-index: -1;
-    }
-
-    /* Header */
-    .header {
+    .brand {
       text-align: center;
       margin-bottom: 20px;
     }
 
-    .header h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #ffffff, #e0e0e0);
+    .brand h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #ffffff, #a0a0a0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       letter-spacing: 2px;
     }
 
-    .subtitle {
-      color: rgba(255, 255, 255, 0.7);
+    .brand p {
       font-size: 0.9rem;
+      color: #888;
       line-height: 1.4;
     }
 
     /* Control sections */
     .control-section {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
+      background: rgba(20, 20, 20, 0.6);
+      border-radius: 16px;
       padding: 25px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .control-section h3 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       margin-bottom: 20px;
-      color: rgba(255, 255, 255, 0.9);
+      color: #fff;
       font-weight: 600;
+      text-align: center;
     }
 
     /* Text input */
-    .text-input {
+    #textInput {
       width: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
       padding: 15px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      background: rgba(10, 10, 10, 0.8);
       color: white;
-      font-size: 1rem;
       outline: none;
-      transition: all 0.3s ease;
       resize: vertical;
       min-height: 60px;
       font-family: inherit;
+      transition: border-color 0.3s ease;
     }
 
-    .text-input:focus {
-      border-color: rgba(255, 255, 255, 0.5);
-      background: rgba(0, 0, 0, 0.4);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    #textInput:focus {
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
-    .text-input::placeholder {
-      color: rgba(255, 255, 255, 0.5);
+    #textInput::placeholder {
+      color: #666;
     }
 
-    /* Button styles */
-    .light-options, .material-options {
+    /* Light and material options */
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .material-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .option-item {
+      position: relative;
+      height: 45px;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 500;
     }
 
-    .light-btn, .material-btn {
-      padding: 12px 18px;
+    .option-item:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .option-item.active {
+      border-color: #fff;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Light options */
+    .light-white {
+      background: linear-gradient(135deg, #FEFEFE, #f0f0f0);
+      color: #333;
+    }
+
+    .light-warm-white {
+      background: linear-gradient(135deg, #FFE9BC, #ffd580);
+      color: #333;
+    }
+
+    /* Material options */
+    .material-black {
+      background: #000000;
+      color: white;
+    }
+
+    .material-white {
+      background: linear-gradient(135deg, #ffffff, #f8f8f8);
+      color: #333;
+    }
+
+    .material-brushed-gold {
+      background: repeating-linear-gradient(
+        0deg,
+        #8B7355 0px,
+        #B8860B 2px,
+        #DAA520 4px,
+        #FFD700 6px,
+        #FFDC00 8px,
+        #DAA520 10px,
+        #8B7355 12px
+      );
+      background-size: 100% 14px;
+      color: #000;
+    }
+
+    .material-brushed-silver {
+      background: repeating-linear-gradient(
+        0deg,
+        #8C8C8C 0px,
+        #C0C0C0 2px,
+        #E5E5E5 4px,
+        #F8F8F8 6px,
+        #E5E5E5 8px,
+        #C0C0C0 10px,
+        #8C8C8C 12px
+      );
+      background-size: 100% 14px;
+      color: #000;
+    }
+
+    .material-mirror-gold {
+      background: radial-gradient(circle, #FFD700, #DAA520, #B8860B);
+      color: #000;
+    }
+
+    .material-mirror-silver {
+      background: radial-gradient(circle, #FFFFFF, #E5E5E5, #C0C0C0);
+      color: #000;
+    }
+
+    /* Material labels */
+    .material-labels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #aaa;
+    }
+
+    .material-labels span {
+      line-height: 1.2;
+    }
+
+    /* View orientation */
+    .view-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .view-btn {
+      padding: 12px 20px;
+      background: rgba(30, 30, 30, 0.8);
       border: 2px solid rgba(255, 255, 255, 0.2);
       border-radius: 25px;
-      background: rgba(255, 255, 255, 0.05);
       color: white;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-weight: 500;
       text-align: center;
-      position: relative;
-      overflow: hidden;
+      font-weight: 500;
     }
 
-    .light-btn:hover, .material-btn:hover {
-      border-color: rgba(255, 255, 255, 0.5);
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
+    .view-btn:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(40, 40, 40, 0.8);
     }
 
-    .light-btn.active, .material-btn.active {
-      border-color: rgba(255, 255, 255, 0.8);
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    .view-btn.active {
+      background: linear-gradient(45deg, #333, #555);
+      border-color: #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
     }
 
-    .light-btn.active::before, .material-btn.active::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    /* Main content */
+    /* Main content area */
     .main-content {
       flex: 1;
       display: flex;
@@ -261,13 +328,13 @@
 
     /* Preview section */
     .preview-section {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(15, 15, 15, 0.6);
       backdrop-filter: blur(20px);
       border-radius: 20px;
       padding: 30px;
-      text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      min-height: 150px;
+      text-align: center;
+      height: 150px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -275,118 +342,133 @@
 
     .preview-text {
       font-size: 3rem;
-      font-weight: bold;
-      line-height: 1.2;
-      word-break: break-word;
-      transition: all 0.3s ease;
+      font-weight: 700;
+      letter-spacing: 0.1em;
     }
 
-    /* Font grid */
-    .fonts-section {
-      flex: 1;
-    }
-
-    .view-controls {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 25px;
-      align-items: center;
-    }
-
-    .view-btn {
-      padding: 10px 20px;
-      border: 2px solid rgba(255, 255, 255, 0.2);
+    /* Font showcase */
+    .font-showcase {
+      background: rgba(15, 15, 15, 0.6);
+      backdrop-filter: blur(20px);
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
-
-    .view-btn.active {
-      border-color: rgba(255, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex: 1;
+      overflow-y: auto;
     }
 
     .font-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 25px;
-      padding: 20px 0;
     }
 
     .font-item {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      padding: 25px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .font-item:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background: rgba(20, 20, 20, 0.4);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .font-number {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 10px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #888;
+      min-width: 35px;
+      text-align: center;
+    }
+
+    .font-text {
+      flex: 1;
+      font-size: 2.2rem;
       font-weight: 600;
-    }
-
-    .font-display {
-      font-size: 2.5rem;
-      font-weight: bold;
+      letter-spacing: 0.05em;
       line-height: 1.2;
-      word-break: break-word;
-      transition: all 0.3s ease;
     }
 
-    .font-name {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: 10px;
-      font-style: italic;
+    /* Material effects for text */
+    .material-black-text {
+      color: #1a1a1a;
     }
 
-    /* Material animations */
-    @keyframes brushedGoldShine {
-      0%, 100% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
+    .material-white-text {
+      color: #ffffff;
+      background: none;
     }
 
-    @keyframes brushedSilverShine {
-      0%, 100% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
+    .material-brushed-gold-text {
+      background: repeating-linear-gradient(
+        0deg,
+        #8B7355 0px,
+        #B8860B 2px,
+        #DAA520 4px,
+        #FFD700 6px,
+        #FFDC00 8px,
+        #DAA520 10px,
+        #8B7355 12px
+      );
+      background-size: 100% 14px;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    @keyframes mirrorGoldReflection {
-      0%, 100% { 
-        filter: brightness(1.4) contrast(1.3) hue-rotate(0deg);
-      }
-      50% { 
-        filter: brightness(1.6) contrast(1.5) hue-rotate(5deg);
-      }
+    .material-brushed-silver-text {
+      background: repeating-linear-gradient(
+        0deg,
+        #8C8C8C 0px,
+        #C0C0C0 2px,
+        #E5E5E5 4px,
+        #F8F8F8 6px,
+        #E5E5E5 8px,
+        #C0C0C0 10px,
+        #8C8C8C 12px
+      );
+      background-size: 100% 14px;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    @keyframes mirrorSilverReflection {
-      0%, 100% { 
-        filter: brightness(1.5) contrast(1.4);
-      }
-      50% { 
-        filter: brightness(1.7) contrast(1.6);
-      }
+    .material-mirror-gold-text {
+      background: radial-gradient(circle, #FFD700, #DAA520, #B8860B);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .material-mirror-silver-text {
+      background: radial-gradient(circle, #FFFFFF, #E5E5E5, #C0C0C0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Custom scrollbar */
+    .font-showcase::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .font-showcase::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+
+    .font-showcase::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+    }
+
+    .font-showcase::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
     }
 
     /* Responsive design */
     @media (max-width: 1024px) {
-      .app-container {
+      .container {
         flex-direction: column;
       }
       
@@ -395,31 +477,8 @@
         padding: 20px;
       }
       
-      .font-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-      }
-      
-      .preview-text {
-        font-size: 3rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .main-content {
+      .control-section {
         padding: 20px;
-      }
-      
-      .preview-section {
-        padding: 25px;
-      }
-      
-      .preview-text {
-        font-size: 2.5rem;
-      }
-      
-      .font-display {
-        font-size: 2rem;
       }
       
       .font-grid {
@@ -427,45 +486,100 @@
       }
     }
 
-    /* Specific font spacing adjustments are handled in JavaScript */
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 15px;
+      }
+      
+      .preview-text {
+        font-size: 2rem;
+      }
+      
+      .font-text {
+        font-size: 1.8rem;
+      }
+      
+      .material-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .material-labels {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="background-grid"></div>
-  
-  <div class="app-container">
+  <div class="container">
     <!-- Sidebar -->
     <div class="sidebar">
-      <div class="header">
+      <div class="brand">
         <h1>ArdelAtelier</h1>
-        <p class="subtitle">Backlit Sign font color preview page</p>
+        <p>Backlit Sign font color preview page</p>
       </div>
 
       <!-- Text Input -->
       <div class="control-section">
         <h3>Text Input</h3>
-        <textarea class="text-input" id="textInput" placeholder="Enter your text here...">BACKLIT SIGN</textarea>
+        <textarea id="textInput" placeholder="Enter your text...">9702</textarea>
       </div>
 
       <!-- Lighting Style -->
       <div class="control-section">
         <h3>Lighting Style</h3>
-        <div class="light-options">
-          <button class="light-btn active" data-light="white">#1 White</button>
-          <button class="light-btn" data-light="warm-white">#2 Warm White</button>
+        <div class="option-grid">
+          <div class="option-item light-option light-white active" data-light="white">
+            #1 White
+          </div>
+          <div class="option-item light-option light-warm-white" data-light="warm-white">
+            #2 Warm White
+          </div>
         </div>
       </div>
 
       <!-- Face Material -->
       <div class="control-section">
         <h3>Face Material</h3>
-        <div class="material-options">
-          <button class="material-btn active" data-material="black" style="background: radial-gradient(circle, #1a1a1a, #000000);">#1 Black</button>
-          <button class="material-btn" data-material="white" style="background: radial-gradient(circle, #ffffff, #f0f0f0); color: #333;">#2 White</button>
-          <button class="material-btn" data-material="brushed-gold" style="background: linear-gradient(45deg, #DAA520, #FFD700, #B8860B);">#3 Brushed Gold</button>
-          <button class="material-btn" data-material="brushed-silver" style="background: linear-gradient(45deg, #C0C0C0, #E5E5E5, #A8A8A8);">#4 Brushed Silver</button>
-          <button class="material-btn" data-material="mirror-gold" style="background: radial-gradient(circle, #FFD700, #DAA520);">#5 Mirror Gold</button>
-          <button class="material-btn" data-material="mirror-silver" style="background: radial-gradient(circle, #FFFFFF, #C0C0C0);">#6 Mirror Silver</button>
+        <div class="material-grid">
+          <div class="option-item material-option material-black active" data-material="black">
+            #1
+          </div>
+          <div class="option-item material-option material-white" data-material="white">
+            #2
+          </div>
+          <div class="option-item material-option material-brushed-gold" data-material="brushed-gold">
+            #3
+          </div>
+          <div class="option-item material-option material-brushed-silver" data-material="brushed-silver">
+            #4
+          </div>
+          <div class="option-item material-option material-mirror-gold" data-material="mirror-gold">
+            #5
+          </div>
+          <div class="option-item material-option material-mirror-silver" data-material="mirror-silver">
+            #6
+          </div>
+        </div>
+        <div class="material-labels">
+          <span>Black</span>
+          <span>White</span>
+          <span>Brushed Gold</span>
+          <span>Brushed Silver</span>
+          <span>Mirror Gold</span>
+          <span>Mirror Silver</span>
+        </div>
+      </div>
+
+      <!-- View Orientation -->
+      <div class="control-section">
+        <h3>View Orientation</h3>
+        <div class="view-controls">
+          <div class="view-btn active" data-orientation="horizontal">
+            Horizontal
+          </div>
+          <div class="view-btn" data-orientation="vertical">
+            Vertical
+          </div>
         </div>
       </div>
     </div>
@@ -477,127 +591,122 @@
         <div class="preview-text" id="previewText">9702</div>
       </div>
 
-      <!-- Fonts Section -->
-      <div class="fonts-section">
-        <div class="view-controls">
-          <button class="view-btn active" data-view="horizontal">Horizontal</button>
-          <button class="view-btn" data-view="vertical">Vertical</button>
-        </div>
-        
+      <!-- Font Showcase -->
+      <div class="font-showcase">
         <div class="font-grid" id="fontGrid">
-          <!-- Fonts will be populated here -->
+          <!-- Font items will be generated here -->
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Light color configurations
-    const lightConfig = {
-      'white': {
-        color: '#FEFEFE',
-        shadow: '0 0 15px #FEFEFE, 0 0 30px #FEFEFE, 0 0 45px #FEFEFE'
-      },
-      'warm-white': {
-        color: '#FFE9BC',
-        shadow: '0 0 15px #FFE9BC, 0 0 30px #FFE9BC, 0 0 45px #FFE9BC'
-      }
-    };
-
-    // Material configurations
-    const materialConfig = {
-      'black': {
-        background: '#1a1a1a',
-        filter: 'brightness(1.0)'
-      },
-      'white': {
-        background: 'linear-gradient(135deg, #ffffff, #f8f8f8, #f0f0f0)',
-        filter: 'brightness(1.1)'
-      },
-      'brushed-gold': {
-        background: 'repeating-linear-gradient(0deg, #8B7355 0px, #B8860B 2px, #DAA520 4px, #FFD700 6px, #FFDC00 8px, #DAA520 10px, #B8860B 12px, #8B7355 14px)',
-        filter: 'brightness(1.2) contrast(1.1)',
-        backgroundSize: '100% 14px'
-      },
-      'brushed-silver': {
-        background: 'repeating-linear-gradient(0deg, #8C8C8C 0px, #A8A8A8 2px, #C0C0C0 4px, #E5E5E5 6px, #F8F8F8 8px, #E5E5E5 10px, #C0C0C0 12px, #A8A8A8 14px)',
-        filter: 'brightness(1.2) contrast(1.1)',
-        backgroundSize: '100% 14px'
-      },
-      'mirror-gold': {
-        background: 'radial-gradient(circle, #FFD700, #DAA520, #B8860B)',
-        filter: 'brightness(1.4) contrast(1.3)'
-      },
-      'mirror-silver': {
-        background: 'radial-gradient(circle, #FFFFFF, #E5E5E5, #C0C0C0)',
-        filter: 'brightness(1.5) contrast(1.4)'
-      }
-    };
-
-    // Updated font list with your custom fonts
+    // Font list from ArdelAtelier repository
     const fonts = [
       'Amita',
-      'Arial Bold',
+      'Arial Bold', 
       'Artnoova',
       'Bahnschrift',
       'Bauhaus',
-      'Century Schlbk Cyrillic',
+      'Century Schlbk',
       'DIN Bold',
       'Dubai Bold',
       'Impact',
       'Lucida Handwriting'
     ];
 
-    // Global state
+    // Enhanced light configurations with your specified colors
+    const lightConfig = {
+      'white': {
+        color: '#FEFEFE',
+        textShadow: '',
+        filter: 'drop-shadow(0 2px 4px rgba(254, 254, 254, 0.8)) drop-shadow(0 4px 8px rgba(254, 254, 254, 0.6)) drop-shadow(0 -2px 4px rgba(254, 254, 254, 0.8)) drop-shadow(-2px 0 4px rgba(254, 254, 254, 0.8)) drop-shadow(2px 0 4px rgba(254, 254, 254, 0.8))'
+      },
+      'warm-white': {
+        color: '#FFE9BC', 
+        textShadow: '',
+        filter: 'drop-shadow(0 2px 4px rgba(255, 233, 188, 0.8)) drop-shadow(0 4px 8px rgba(255, 233, 188, 0.6)) drop-shadow(0 -2px 4px rgba(255, 233, 188, 0.8)) drop-shadow(-2px 0 4px rgba(255, 233, 188, 0.8)) drop-shadow(2px 0 4px rgba(255, 233, 188, 0.8))'
+      }
+    };
+
+    // Current settings
+    let currentText = '9702';
     let currentLight = 'white';
     let currentMaterial = 'black';
-    let currentView = 'horizontal';
+    let currentOrientation = 'horizontal';
 
     // DOM elements
     const textInput = document.getElementById('textInput');
     const previewText = document.getElementById('previewText');
     const fontGrid = document.getElementById('fontGrid');
-    const lightBtns = document.querySelectorAll('.light-btn');
-    const materialBtns = document.querySelectorAll('.material-btn');
+    const lightOptions = document.querySelectorAll('.light-option');
+    const materialOptions = document.querySelectorAll('.material-option');
     const viewBtns = document.querySelectorAll('.view-btn');
 
-    // Apply text effects
-    function applyEffects(element) {
-      const light = lightConfig[currentLight];
-      const material = materialConfig[currentMaterial];
-      
-      // Reset styles first
-      element.style.background = 'none';
-      element.style.webkitBackgroundClip = 'initial';
-      element.style.backgroundClip = 'initial';
-      element.style.webkitTextFillColor = 'initial';
-      element.style.color = 'initial';
-      
-      // Apply material background and make text transparent to show background
-      element.style.background = material.background;
-      element.style.webkitBackgroundClip = 'text';
-      element.style.backgroundClip = 'text';
-      element.style.webkitTextFillColor = 'transparent';
-      
-      // Apply light glow effect
-      element.style.textShadow = light.shadow;
-      element.style.filter = `${material.filter || ''} drop-shadow(0 0 20px ${light.color}) drop-shadow(0 0 40px ${light.color})`;
-      
-      if (material.backgroundSize) {
-        element.style.backgroundSize = material.backgroundSize;
-      }
+    // Initialize
+    function init() {
+      renderFonts();
+      updatePreview();
+      setupEventListeners();
+    }
+
+    // Setup event listeners
+    function setupEventListeners() {
+      // Text input
+      textInput.addEventListener('input', (e) => {
+        currentText = e.target.value || '9702';
+        updatePreview();
+        renderFonts();
+      });
+
+      // Light options
+      lightOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          lightOptions.forEach(opt => opt.classList.remove('active'));
+          option.classList.add('active');
+          currentLight = option.dataset.light;
+          updatePreview();
+          renderFonts();
+        });
+      });
+
+      // Material options
+      materialOptions.forEach(option => {
+        option.addEventListener('click', () => {
+          materialOptions.forEach(opt => opt.classList.remove('active'));
+          option.classList.add('active');
+          currentMaterial = option.dataset.material;
+          updatePreview();
+          renderFonts();
+        });
+      });
+
+      // View orientation
+      viewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          viewBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentOrientation = btn.dataset.orientation;
+          updatePreview();
+          renderFonts();
+        });
+      });
     }
 
     // Update preview
     function updatePreview() {
-      const text = textInput.value || '9702';
-      previewText.textContent = text;
-      applyEffects(previewText);
+      const lightSettings = lightConfig[currentLight];
       
-      // Apply current orientation to preview
-      if (currentView === 'vertical') {
+      previewText.textContent = currentText;
+      previewText.className = `preview-text material-${currentMaterial}-text`;
+      
+      // Apply light effects
+      previewText.style.filter = lightSettings.filter;
+      
+      // Apply orientation
+      if (currentOrientation === 'vertical') {
         previewText.style.writingMode = 'vertical-rl';
-        previewText.style.textOrientation = 'upright';
+        previewText.style.textOrientation = 'mixed';
       } else {
         previewText.style.writingMode = 'horizontal-tb';
         previewText.style.textOrientation = 'mixed';
@@ -606,133 +715,71 @@
 
     // Render fonts
     function renderFonts() {
-      const text = textInput.value || '9702';
-      fontGrid.innerHTML = '';
-      
+      const fragment = document.createDocumentFragment();
+      const lightSettings = lightConfig[currentLight];
+
       fonts.forEach((font, index) => {
-        const fontItem = document.createElement('div');
-        fontItem.className = 'font-item';
+        const fontDiv = document.createElement("div");
+        fontDiv.classList.add("font-item");
         
-        fontItem.innerHTML = `
-          <div class="font-number">#${index + 1}</div>
-          <div class="font-display" style="font-family: '${font}', sans-serif;">${text}</div>
-        `;
+        const numberDiv = document.createElement("div");
+        numberDiv.classList.add("font-number");
+        numberDiv.textContent = `#${index + 1}`;
+        fontDiv.appendChild(numberDiv);
         
-        const fontDisplay = fontItem.querySelector('.font-display');
-        applyEffects(fontDisplay);
+        const textDiv = document.createElement("div");
+        textDiv.classList.add("font-text", `material-${currentMaterial}-text`);
+        textDiv.textContent = currentText;
         
-        // Apply current orientation and specific spacing adjustments
-        if (currentView === 'vertical') {
-          fontDisplay.style.writingMode = 'vertical-rl';
-          fontDisplay.style.textOrientation = 'upright';
-          fontDisplay.style.letterSpacing = ''; // Reset first
-          // Adjust spacing for specific fonts in vertical mode - make narrower
-          if (index === 0) fontDisplay.style.letterSpacing = '-0.2em'; // #1
-          if (index === 7) fontDisplay.style.letterSpacing = '-0.15em'; // #8
-        } else {
-          fontDisplay.style.writingMode = 'horizontal-tb';
-          fontDisplay.style.textOrientation = 'mixed';
-          fontDisplay.style.letterSpacing = ''; // Reset first
-          // Adjust spacing for specific fonts in horizontal mode - make wider
-          if (index === 0) fontDisplay.style.letterSpacing = '0.4em'; // #1
-          if (index === 2) fontDisplay.style.letterSpacing = '0.3em'; // #3
-          if (index === 4) fontDisplay.style.letterSpacing = '0.35em'; // #5
-          if (index === 8) fontDisplay.style.letterSpacing = '0.25em'; // #9
-        }
+        // Apply font family
+        textDiv.style.fontFamily = `'${font}', sans-serif`;
         
-        fontGrid.appendChild(fontItem);
-      });
-    }
-
-    // Update all effects
-    function updateAllEffects() {
-      updatePreview();
-      const fontDisplays = document.querySelectorAll('.font-display');
-      fontDisplays.forEach(applyEffects);
-    }
-
-    // Event listeners
-    textInput.addEventListener('input', () => {
-      clearTimeout(textInput.timeout);
-      textInput.timeout = setTimeout(() => {
-        updatePreview();
-        renderFonts();
-      }, 300);
-    });
-
-    lightBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        lightBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentLight = btn.dataset.light;
-        updateAllEffects();
-      });
-    });
-
-    materialBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        materialBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentMaterial = btn.dataset.material;
-        updateAllEffects();
-      });
-    });
-
-    viewBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        viewBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentView = btn.dataset.view;
+        // Apply light effects
+        textDiv.style.filter = lightSettings.filter;
         
-        // Apply orientation styles
-        const fontDisplays = document.querySelectorAll('.font-display');
-        fontDisplays.forEach((display, index) => {
-          if (currentView === 'vertical') {
-            display.style.writingMode = 'vertical-rl';
-            display.style.textOrientation = 'upright';
-            // Reset and apply vertical spacing - make narrower
-            display.style.letterSpacing = '';
-            if (index === 0) display.style.letterSpacing = '-0.2em'; // #1
-            if (index === 7) display.style.letterSpacing = '-0.15em'; // #8
+        // Apply orientation
+        if (currentOrientation === 'vertical') {
+          textDiv.style.writingMode = 'vertical-rl';
+          textDiv.style.textOrientation = 'mixed';
+          // Vertical mode spacing adjustments
+          if (index === 0) { // #1
+            textDiv.style.letterSpacing = '-0.15em';
+          } else if (index === 7) { // #8
+            textDiv.style.letterSpacing = '-0.1em';
           } else {
-            display.style.writingMode = 'horizontal-tb';
-            display.style.textOrientation = 'mixed';
-            // Reset and apply horizontal spacing - make wider
-            display.style.letterSpacing = '';
-            if (index === 0) display.style.letterSpacing = '0.4em'; // #1
-            if (index === 2) display.style.letterSpacing = '0.3em'; // #3
-            if (index === 4) display.style.letterSpacing = '0.35em'; // #5
-            if (index === 8) display.style.letterSpacing = '0.25em'; // #9
+            textDiv.style.letterSpacing = 'normal';
           }
-        });
-        
-        // Apply to preview text as well
-        if (currentView === 'vertical') {
-          previewText.style.writingMode = 'vertical-rl';
-          previewText.style.textOrientation = 'upright';
         } else {
-          previewText.style.writingMode = 'horizontal-tb';
-          previewText.style.textOrientation = 'mixed';
+          textDiv.style.writingMode = 'horizontal-tb';
+          textDiv.style.textOrientation = 'mixed';
+          // Horizontal mode spacing adjustments  
+          if (index === 0) { // #1
+            textDiv.style.letterSpacing = '0.35em';
+          } else if (index === 2) { // #3
+            textDiv.style.letterSpacing = '0.25em';
+          } else if (index === 4) { // #5
+            textDiv.style.letterSpacing = '0.3em';
+          } else if (index === 8) { // #9
+            textDiv.style.letterSpacing = '0.3em';
+          } else {
+            textDiv.style.letterSpacing = 'normal';
+          }
         }
+        
+        fontDiv.appendChild(textDiv);
+        fragment.appendChild(fontDiv);
       });
-    });
-
-    // Initialize
-    function init() {
-      updatePreview();
-      renderFonts();
+      
+      fontGrid.innerHTML = '';
+      fontGrid.appendChild(fragment);
     }
 
-    // Load initialization
+    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
     } else {
       init();
     }
-
-    // Fallback initialization
-    setTimeout(init, 100);
-    window.addEventListener('load', init);
   </script>
 </body>
 </html>
