@@ -62,13 +62,11 @@
       font-style: italic;
       font-display: swap;
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: linear-gradient(-45deg, #0f0f23, #1a1a2e, #16213e, #0f3460);
@@ -78,7 +76,6 @@
       overflow-x: hidden;
       min-height: 100vh;
     }
-
     /* Animated background */
     .background-grid {
       position: fixed;
@@ -93,24 +90,20 @@
       animation: backgroundMove 20s linear infinite;
       z-index: -1;
     }
-
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     @keyframes backgroundMove {
       0% { transform: translate(0, 0); }
       100% { transform: translate(50px, 50px); }
     }
-
     /* Main layout */
     .app-container {
       display: flex;
       min-height: 100vh;
     }
-
     /* Sidebar */
     .sidebar {
       width: 350px;
@@ -124,7 +117,6 @@
       position: relative;
       overflow-y: auto;
     }
-
     .sidebar::before {
       content: '';
       position: absolute;
@@ -135,13 +127,11 @@
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
       z-index: -1;
     }
-
     /* Header */
     .header {
       text-align: center;
       margin-bottom: 20px;
     }
-
     .header h1 {
       font-size: 2.5rem;
       font-weight: 800;
@@ -152,13 +142,11 @@
       margin-bottom: 10px;
       letter-spacing: 2px;
     }
-
     .subtitle {
       color: rgba(255, 255, 255, 0.7);
       font-size: 0.9rem;
       line-height: 1.4;
     }
-
     /* Control sections */
     .control-section {
       background: rgba(255, 255, 255, 0.05);
@@ -166,14 +154,12 @@
       padding: 25px;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
-
     .control-section h3 {
       font-size: 1.1rem;
       margin-bottom: 20px;
       color: rgba(255, 255, 255, 0.9);
       font-weight: 600;
     }
-
     /* Text input */
     .text-input {
       width: 100%;
@@ -189,24 +175,20 @@
       min-height: 60px;
       font-family: inherit;
     }
-
     .text-input:focus {
       border-color: rgba(255, 255, 255, 0.5);
       background: rgba(0, 0, 0, 0.4);
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     }
-
     .text-input::placeholder {
       color: rgba(255, 255, 255, 0.5);
     }
-
     /* Button styles */
     .light-options, .material-options {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-
     .light-btn, .material-btn {
       padding: 12px 18px;
       border: 2px solid rgba(255, 255, 255, 0.2);
@@ -220,20 +202,17 @@
       position: relative;
       overflow: hidden;
     }
-
     .light-btn:hover, .material-btn:hover {
       border-color: rgba(255, 255, 255, 0.5);
       background: rgba(255, 255, 255, 0.1);
       transform: translateY(-2px);
       box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
     }
-
     .light-btn.active, .material-btn.active {
       border-color: rgba(255, 255, 255, 0.8);
       background: rgba(255, 255, 255, 0.15);
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
     }
-
     .light-btn.active::before, .material-btn.active::before {
       content: '';
       position: absolute;
@@ -244,12 +223,10 @@
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       animation: shimmer 2s infinite;
     }
-
     @keyframes shimmer {
       0% { left: -100%; }
       100% { left: 100%; }
     }
-
     /* Main content */
     .main-content {
       flex: 1;
@@ -258,7 +235,6 @@
       padding: 30px;
       gap: 30px;
     }
-
     /* Preview section */
     .preview-section {
       background: rgba(255, 255, 255, 0.05);
@@ -272,7 +248,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .preview-text {
       font-size: 3rem;
       font-weight: bold;
@@ -280,19 +255,16 @@
       word-break: break-word;
       transition: all 0.3s ease;
     }
-
     /* Font grid */
     .fonts-section {
       flex: 1;
     }
-
     .view-controls {
       display: flex;
       gap: 15px;
       margin-bottom: 25px;
       align-items: center;
     }
-
     .view-btn {
       padding: 10px 20px;
       border: 2px solid rgba(255, 255, 255, 0.2);
@@ -303,19 +275,16 @@
       transition: all 0.3s ease;
       font-size: 0.9rem;
     }
-
     .view-btn.active {
       border-color: rgba(255, 255, 255, 0.6);
       background: rgba(255, 255, 255, 0.1);
     }
-
     .font-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 25px;
       padding: 20px 0;
     }
-
     .font-item {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 15px;
@@ -325,21 +294,18 @@
       position: relative;
       overflow: hidden;
     }
-
     .font-item:hover {
       transform: translateY(-5px);
       background: rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.3);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
-
     .font-number {
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.5);
       margin-bottom: 10px;
       font-weight: 600;
     }
-
     .font-display {
       font-size: 2.5rem;
       font-weight: bold;
@@ -347,25 +313,21 @@
       word-break: break-word;
       transition: all 0.3s ease;
     }
-
     .font-name {
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.7);
       margin-top: 10px;
       font-style: italic;
     }
-
     /* Material animations */
     @keyframes brushedGoldShine {
       0%, 100% { background-position: 0% 0%; }
       50% { background-position: 100% 100%; }
     }
-
     @keyframes brushedSilverShine {
       0%, 100% { background-position: 0% 0%; }
       50% { background-position: 100% 100%; }
     }
-
     @keyframes mirrorGoldReflection {
       0%, 100% { 
         filter: brightness(1.4) contrast(1.3) hue-rotate(0deg);
@@ -374,7 +336,6 @@
         filter: brightness(1.6) contrast(1.5) hue-rotate(5deg);
       }
     }
-
     @keyframes mirrorSilverReflection {
       0%, 100% { 
         filter: brightness(1.5) contrast(1.4);
@@ -383,7 +344,6 @@
         filter: brightness(1.7) contrast(1.6);
       }
     }
-
     /* Responsive design */
     @media (max-width: 1024px) {
       .app-container {
@@ -404,7 +364,6 @@
         font-size: 3rem;
       }
     }
-
     @media (max-width: 768px) {
       .main-content {
         padding: 20px;
@@ -426,7 +385,6 @@
         grid-template-columns: 1fr;
       }
     }
-
     /* Specific font spacing adjustments are handled in JavaScript */
   </style>
 </head>
@@ -440,13 +398,11 @@
         <h1>ArdelAtelier</h1>
         <p class="subtitle">Backlit Sign font color preview page</p>
       </div>
-
       <!-- Text Input -->
       <div class="control-section">
         <h3>Text Input</h3>
-        <textarea class="text-input" id="textInput" placeholder="Enter your text here...">BACKLIT SIGN</textarea>
+        <textarea class="text-input" id="textInput" placeholder="Enter your text here...">9702</textarea>
       </div>
-
       <!-- Lighting Style -->
       <div class="control-section">
         <h3>Lighting Style</h3>
@@ -455,7 +411,6 @@
           <button class="light-btn" data-light="warm-white">#2 Warm White</button>
         </div>
       </div>
-
       <!-- Face Material -->
       <div class="control-section">
         <h3>Face Material</h3>
@@ -469,14 +424,12 @@
         </div>
       </div>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
       <!-- Preview Section -->
       <div class="preview-section">
         <div class="preview-text" id="previewText">9702</div>
       </div>
-
       <!-- Fonts Section -->
       <div class="fonts-section">
         <div class="view-controls">
@@ -490,21 +443,19 @@
       </div>
     </div>
   </div>
-
   <script>
-    // Light color configurations
+    // Light color configurations - 聚焦在字母背后，不过度散开
     const lightConfig = {
       'white': {
         color: '#FEFEFE',
-        shadow: '0 0 15px #FEFEFE, 0 0 30px #FEFEFE, 0 0 45px #FEFEFE'
+        shadow: ''
       },
       'warm-white': {
         color: '#FFE9BC',
-        shadow: '0 0 15px #FFE9BC, 0 0 30px #FFE9BC, 0 0 45px #FFE9BC'
+        shadow: ''
       }
     };
-
-    // Material configurations
+    // Material configurations - 横向拉丝效果
     const materialConfig = {
       'black': {
         background: '#1a1a1a',
@@ -533,7 +484,6 @@
         filter: 'brightness(1.5) contrast(1.4)'
       }
     };
-
     // Updated font list with your custom fonts
     const fonts = [
       'Amita',
@@ -547,12 +497,10 @@
       'Impact',
       'Lucida Handwriting'
     ];
-
     // Global state
     let currentLight = 'white';
     let currentMaterial = 'black';
     let currentView = 'horizontal';
-
     // DOM elements
     const textInput = document.getElementById('textInput');
     const previewText = document.getElementById('previewText');
@@ -560,7 +508,6 @@
     const lightBtns = document.querySelectorAll('.light-btn');
     const materialBtns = document.querySelectorAll('.material-btn');
     const viewBtns = document.querySelectorAll('.view-btn');
-
     // Apply text effects
     function applyEffects(element) {
       const light = lightConfig[currentLight];
@@ -579,15 +526,14 @@
       element.style.backgroundClip = 'text';
       element.style.webkitTextFillColor = 'transparent';
       
-      // Apply light glow effect
+      // Apply light glow effect - 只在字母边缘背后
       element.style.textShadow = light.shadow;
-      element.style.filter = `${material.filter || ''} drop-shadow(0 0 20px ${light.color}) drop-shadow(0 0 40px ${light.color})`;
+      element.style.filter = `${material.filter || ''} drop-shadow(2px 2px 5px rgba(${light.color === '#FEFEFE' ? '254, 254, 254' : '255, 233, 188'}, 0.7)) drop-shadow(-2px -2px 5px rgba(${light.color === '#FEFEFE' ? '254, 254, 254' : '255, 233, 188'}, 0.7)) drop-shadow(0 0 6px rgba(${light.color === '#FEFEFE' ? '254, 254, 254' : '255, 233, 188'}, 0.4))`;
       
       if (material.backgroundSize) {
         element.style.backgroundSize = material.backgroundSize;
       }
     }
-
     // Update preview
     function updatePreview() {
       const text = textInput.value || '9702';
@@ -603,7 +549,6 @@
         previewText.style.textOrientation = 'mixed';
       }
     }
-
     // Render fonts
     function renderFonts() {
       const text = textInput.value || '9702';
@@ -627,30 +572,28 @@
           fontDisplay.style.textOrientation = 'upright';
           fontDisplay.style.letterSpacing = ''; // Reset first
           // Adjust spacing for specific fonts in vertical mode - make narrower
-          if (index === 0) fontDisplay.style.letterSpacing = '-0.2em'; // #1
+          if (index === 0) fontDisplay.style.letterSpacing = '-0.3em'; // #1 再缩短
           if (index === 7) fontDisplay.style.letterSpacing = '-0.15em'; // #8
         } else {
           fontDisplay.style.writingMode = 'horizontal-tb';
           fontDisplay.style.textOrientation = 'mixed';
           fontDisplay.style.letterSpacing = ''; // Reset first
           // Adjust spacing for specific fonts in horizontal mode - make wider
-          if (index === 0) fontDisplay.style.letterSpacing = '0.4em'; // #1
-          if (index === 2) fontDisplay.style.letterSpacing = '0.3em'; // #3
-          if (index === 4) fontDisplay.style.letterSpacing = '0.35em'; // #5
+          if (index === 0) fontDisplay.style.letterSpacing = '0.15em'; // #1 再缩短
+          if (index === 2) fontDisplay.style.letterSpacing = '0.25em'; // #3 缩短
+          if (index === 4) fontDisplay.style.letterSpacing = '0.2em'; // #5 缩短
           if (index === 8) fontDisplay.style.letterSpacing = '0.25em'; // #9
         }
         
         fontGrid.appendChild(fontItem);
       });
     }
-
     // Update all effects
     function updateAllEffects() {
       updatePreview();
       const fontDisplays = document.querySelectorAll('.font-display');
       fontDisplays.forEach(applyEffects);
     }
-
     // Event listeners
     textInput.addEventListener('input', () => {
       clearTimeout(textInput.timeout);
@@ -659,7 +602,6 @@
         renderFonts();
       }, 300);
     });
-
     lightBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         lightBtns.forEach(b => b.classList.remove('active'));
@@ -668,7 +610,6 @@
         updateAllEffects();
       });
     });
-
     materialBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         materialBtns.forEach(b => b.classList.remove('active'));
@@ -677,7 +618,6 @@
         updateAllEffects();
       });
     });
-
     viewBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         viewBtns.forEach(b => b.classList.remove('active'));
@@ -692,16 +632,16 @@
             display.style.textOrientation = 'upright';
             // Reset and apply vertical spacing - make narrower
             display.style.letterSpacing = '';
-            if (index === 0) display.style.letterSpacing = '-0.2em'; // #1
+            if (index === 0) display.style.letterSpacing = '-0.3em'; // #1 再缩短
             if (index === 7) display.style.letterSpacing = '-0.15em'; // #8
           } else {
             display.style.writingMode = 'horizontal-tb';
             display.style.textOrientation = 'mixed';
             // Reset and apply horizontal spacing - make wider
             display.style.letterSpacing = '';
-            if (index === 0) display.style.letterSpacing = '0.4em'; // #1
-            if (index === 2) display.style.letterSpacing = '0.3em'; // #3
-            if (index === 4) display.style.letterSpacing = '0.35em'; // #5
+            if (index === 0) display.style.letterSpacing = '0.15em'; // #1 再缩短
+            if (index === 2) display.style.letterSpacing = '0.25em'; // #3 缩短
+            if (index === 4) display.style.letterSpacing = '0.2em'; // #5 缩短
             if (index === 8) display.style.letterSpacing = '0.25em'; // #9
           }
         });
@@ -716,20 +656,17 @@
         }
       });
     });
-
     // Initialize
     function init() {
       updatePreview();
       renderFonts();
     }
-
     // Load initialization
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
     } else {
       init();
     }
-
     // Fallback initialization
     setTimeout(init, 100);
     window.addEventListener('load', init);
