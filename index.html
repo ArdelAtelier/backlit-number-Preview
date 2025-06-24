@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArdelAtelier - Backlit Sign Font Color Preview</title>
+  
+  <style>
+    /* Font preloading for better performance */
+    @font-face {
+      font-family: 'Amita';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Amita-Regular.woff2') format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Arial Bold';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Arial-BoldMT.woff2') format('woff2');
+      font-weight: bold;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Artnoova';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Artnoova-Regular.woff2') format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Bahnschrift';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Bahnschrift.woff2') format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Bauhaus';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Bauhaus.woff2') format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Century Schlbk Cyrillic';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/CenturySchlbkCyrillicBT-Bold.woff2') format('woff2');
+      font-weight: bold;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'DIN Bold';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/DINBoldDINBold.woff2') format('woff2');
+      font-weight: bold;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Dubai Bold';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Dubai-Bold.woff2') format('woff2');
+      font-weight: bold;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Impact';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/Impact.woff2') format('woff2');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Lucida Handwriting';
+      src: url('https://cdn.jsdelivr.net/gh/ArdelAtelier/backlit-number/LucidaHandwriting-Italic.woff2') format('woff2');
+      font-style: italic;
+      font-display: swap;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(-45deg, #0f0f23, #1a1a2e, #16213e, #0f3460);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Animated background */
+    .background-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: backgroundMove 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes backgroundMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    /* Main layout */
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 350px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+      z-index: -1;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #e0e0e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    /* Control sections */
+    .control-section {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .control-section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+    }
+
+    /* Text input */
+    .text-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 15px;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+      resize: vertical;
+      min-height: 60px;
+      font-family: inherit;
+    }
+
+    .text-input:focus {
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .text-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Button styles */
+    .light-options, .material-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .light-btn, .material-btn {
+      padding: 12px 18px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .light-btn:hover, .material-btn:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .light-btn.active, .material-btn.active {
+      border-color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    }
+
+    .light-btn.active::before, .material-btn.active::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+      gap: 30px;
+    }
+
+    /* Preview section */
+    .preview-section {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-text {
+      font-size: 4rem;
+      font-weight: bold;
+      line-height: 1.2;
+      word-break: break-word;
+      transition: all 0.3s ease;
+    }
+
+    /* Font grid */
+    .fonts-section {
+      flex: 1;
+    }
+
+    .view-controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+      align-items: center;
+    }
+
+    .view-btn {
+      padding: 10px 20px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .view-btn.active {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .font-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 20px 0;
+    }
+
+    .font-grid.list-view {
+      grid-template-columns: 1fr;
+    }
+
+    .font-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .font-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .font-number {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .font-display {
+      font-size: 2.5rem;
+      font-weight: bold;
+      line-height: 1.2;
+      word-break: break-word;
+      transition: all 0.3s ease;
+    }
+
+    .font-name {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* Material animations */
+    @keyframes brushedGoldShine {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+    }
+
+    @keyframes brushedSilverShine {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+    }
+
+    @keyframes mirrorGoldReflection {
+      0%, 100% { 
+        filter: brightness(1.4) contrast(1.3) hue-rotate(0deg);
+      }
+      50% { 
+        filter: brightness(1.6) contrast(1.5) hue-rotate(5deg);
+      }
+    }
+
+    @keyframes mirrorSilverReflection {
+      0%, 100% { 
+        filter: brightness(1.5) contrast(1.4);
+      }
+      50% { 
+        filter: brightness(1.7) contrast(1.6);
+      }
+    }
+
+    /* Responsive design */
+    @media (max-width: 1024px) {
+      .app-container {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        padding: 20px;
+      }
+      
+      .font-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      
+      .preview-text {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 20px;
+      }
+      
+      .preview-section {
+        padding: 25px;
+      }
+      
+      .preview-text {
+        font-size: 2.5rem;
+      }
+      
+      .font-display {
+        font-size: 2rem;
+      }
+      
+      .font-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-grid"></div>
+  
+  <div class="app-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="header">
+        <h1>ArdelAtelier</h1>
+        <p class="subtitle">Backlit Sign font color preview page</p>
+      </div>
+
+      <!-- Text Input -->
+      <div class="control-section">
+        <h3>Text Input</h3>
+        <textarea class="text-input" id="textInput" placeholder="Enter your text here...">BACKLIT SIGN</textarea>
+      </div>
+
+      <!-- Lighting Style -->
+      <div class="control-section">
+        <h3>Lighting Style</h3>
+        <div class="light-options">
+          <button class="light-btn active" data-light="white">White</button>
+          <button class="light-btn" data-light="warm-white">Warm White</button>
+        </div>
+      </div>
+
+      <!-- Face Material -->
+      <div class="control-section">
+        <h3>Face Material</h3>
+        <div class="material-options">
+          <button class="material-btn active" data-material="black" style="background: radial-gradient(circle, #1a1a1a, #000000);">Black</button>
+          <button class="material-btn" data-material="white" style="background: radial-gradient(circle, #ffffff, #f0f0f0); color: #333;">White</button>
+          <button class="material-btn" data-material="brushed-gold" style="background: linear-gradient(45deg, #DAA520, #FFD700, #B8860B);">Brushed Gold</button>
+          <button class="material-btn" data-material="brushed-silver" style="background: linear-gradient(45deg, #C0C0C0, #E5E5E5, #A8A8A8);">Brushed Silver</button>
+          <button class="material-btn" data-material="mirror-gold" style="background: radial-gradient(circle, #FFD700, #DAA520);">Mirror Gold</button>
+          <button class="material-btn" data-material="mirror-silver" style="background: radial-gradient(circle, #FFFFFF, #C0C0C0);">Mirror Silver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Preview Section -->
+      <div class="preview-section">
+        <div class="preview-text" id="previewText">BACKLIT SIGN</div>
+      </div>
+
+      <!-- Fonts Section -->
+      <div class="fonts-section">
+        <div class="view-controls">
+          <button class="view-btn active" data-view="grid">Grid View</button>
+          <button class="view-btn" data-view="list">List View</button>
+        </div>
+        
+        <div class="font-grid" id="fontGrid">
+          <!-- Fonts will be populated here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Light color configurations
+    const lightConfig = {
+      'white': {
+        color: 'rgba(255, 255, 255, 0.9)',
+        shadow: '0 0 15px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 45px rgba(255, 255, 255, 0.2)'
+      },
+      'warm-white': {
+        color: 'rgba(255, 230, 179, 0.9)',
+        shadow: '0 0 15px rgba(255, 230, 179, 0.6), 0 0 30px rgba(255, 230, 179, 0.4), 0 0 45px rgba(255, 230, 179, 0.2)'
+      }
+    };
+
+    // Material configurations
+    const materialConfig = {
+      'black': {
+        background: 'linear-gradient(135deg, #1a1a1a, #000000, #0d0d0d)',
+        filter: 'brightness(0.9)'
+      },
+      'white': {
+        background: 'linear-gradient(135deg, #ffffff, #f8f8f8, #f0f0f0)',
+        filter: 'brightness(1.1)'
+      },
+      'brushed-gold': {
+        background: 'linear-gradient(45deg, #8B7355 0%, #B8860B 20%, #DAA520 40%, #FFD700 50%, #FFDC00 60%, #DAA520 80%, #8B7355 100%)',
+        filter: 'brightness(1.2) contrast(1.1)',
+        backgroundSize: '200% 200%',
+        animation: 'brushedGoldShine 3s ease-in-out infinite'
+      },
+      'brushed-silver': {
+        background: 'linear-gradient(45deg, #8C8C8C 0%, #C0C0C0 30%, #E5E5E5 50%, #F8F8F8 70%, #C0C0C0 100%)',
+        filter: 'brightness(1.2) contrast(1.1)',
+        backgroundSize: '200% 200%',
+        animation: 'brushedSilverShine 3s ease-in-out infinite'
+      },
+      'mirror-gold': {
+        background: 'radial-gradient(circle, #FFD700, #DAA520, #B8860B)',
+        filter: 'brightness(1.4) contrast(1.3)',
+        animation: 'mirrorGoldReflection 2s ease-in-out infinite'
+      },
+      'mirror-silver': {
+        background: 'radial-gradient(circle, #FFFFFF, #E5E5E5, #C0C0C0)',
+        filter: 'brightness(1.5) contrast(1.4)',
+        animation: 'mirrorSilverReflection 2s ease-in-out infinite'
+      }
+    };
+
+    // Updated font list with your custom fonts
+    const fonts = [
+      'Amita',
+      'Arial Bold',
+      'Artnoova',
+      'Bahnschrift',
+      'Bauhaus',
+      'Century Schlbk Cyrillic',
+      'DIN Bold',
+      'Dubai Bold',
+      'Impact',
+      'Lucida Handwriting'
+    ];
+
+    // Global state
+    let currentLight = 'white';
+    let currentMaterial = 'black';
+    let currentView = 'grid';
+
+    // DOM elements
+    const textInput = document.getElementById('textInput');
+    const previewText = document.getElementById('previewText');
+    const fontGrid = document.getElementById('fontGrid');
+    const lightBtns = document.querySelectorAll('.light-btn');
+    const materialBtns = document.querySelectorAll('.material-btn');
+    const viewBtns = document.querySelectorAll('.view-btn');
+
+    // Apply text effects
+    function applyEffects(element) {
+      const light = lightConfig[currentLight];
+      const material = materialConfig[currentMaterial];
+      
+      // Apply material background
+      element.style.background = material.background;
+      element.style.webkitBackgroundClip = 'text';
+      element.style.backgroundClip = 'text';
+      element.style.webkitTextFillColor = 'transparent';
+      
+      // Apply material filter and animation
+      if (material.filter) {
+        element.style.filter = `${material.filter} drop-shadow(${light.shadow})`;
+      } else {
+        element.style.filter = `drop-shadow(${light.shadow})`;
+      }
+      
+      if (material.backgroundSize) {
+        element.style.backgroundSize = material.backgroundSize;
+      }
+      
+      if (material.animation) {
+        element.style.animation = material.animation;
+      }
+    }
+
+    // Update preview
+    function updatePreview() {
+      const text = textInput.value || 'BACKLIT SIGN';
+      previewText.textContent = text;
+      applyEffects(previewText);
+    }
+
+    // Render fonts
+    function renderFonts() {
+      const text = textInput.value || 'BACKLIT SIGN';
+      fontGrid.innerHTML = '';
+      
+      fonts.forEach((font, index) => {
+        const fontItem = document.createElement('div');
+        fontItem.className = 'font-item';
+        
+        fontItem.innerHTML = `
+          <div class="font-number">#${index + 1}</div>
+          <div class="font-display" style="font-family: '${font}', sans-serif;">${text}</div>
+          <div class="font-name">${font}</div>
+        `;
+        
+        const fontDisplay = fontItem.querySelector('.font-display');
+        applyEffects(fontDisplay);
+        
+        fontGrid.appendChild(fontItem);
+      });
+    }
+
+    // Update all effects
+    function updateAllEffects() {
+      updatePreview();
+      const fontDisplays = document.querySelectorAll('.font-display');
+      fontDisplays.forEach(applyEffects);
+    }
+
+    // Event listeners
+    textInput.addEventListener('input', () => {
+      clearTimeout(textInput.timeout);
+      textInput.timeout = setTimeout(() => {
+        updatePreview();
+        renderFonts();
+      }, 300);
+    });
+
+    lightBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        lightBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentLight = btn.dataset.light;
+        updateAllEffects();
+      });
+    });
+
+    materialBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        materialBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMaterial = btn.dataset.material;
+        updateAllEffects();
+      });
+    });
+
+    viewBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        viewBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentView = btn.dataset.view;
+        fontGrid.className = currentView === 'list' ? 'font-grid list-view' : 'font-grid';
+      });
+    });
+
+    // Initialize
+    function init() {
+      updatePreview();
+      renderFonts();
+    }
+
+    // Load initialization
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    // Fallback initialization
+    setTimeout(init, 100);
+    window.addEventListener('load', init);
+  </script>
+</body>
+</html>
